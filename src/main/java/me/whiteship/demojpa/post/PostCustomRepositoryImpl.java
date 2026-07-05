@@ -11,7 +11,7 @@ import java.util.List;
 @Slf4j
 @Repository
 @Transactional
-public class PostCustomRepositoryDefault implements PostCustomRepository<Post> {
+public class PostCustomRepositoryImpl implements PostCustomRepository<Post> {
     @Autowired
     EntityManager em;
 
