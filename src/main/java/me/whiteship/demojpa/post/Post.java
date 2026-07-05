@@ -3,13 +3,14 @@ package me.whiteship.demojpa.post;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.domain.AbstractAggregateRoot;
 
 import java.util.Date;
 
 @Entity
 @Getter
 @Setter
-public class Post {
+public class Post extends AbstractAggregateRoot<Post> {
 
     @Id @GeneratedValue
     private Long id;
@@ -21,4 +22,8 @@ public class Post {
 
     private Date created;
 
+    public Post publish() {
+        this.registerEvent(new PostPublishedEvent(this));
+        return this;
+    }
 }
